@@ -1,5 +1,7 @@
-package com.example.application;
+package com.example.myapplication;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -11,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +32,25 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        addListenerOnButton();
+    }
+
+        public void addListenerOnButton() {
+
+            Button button =  findViewById(R.id.button);
+
+            button.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+
+                    Intent browserIntent =
+                            new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+                    startActivity(Intent.createChooser(browserIntent, "Browse with"));
+
+                }
+
+            });
     }
 
     @Override
